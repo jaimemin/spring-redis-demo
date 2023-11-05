@@ -1,4 +1,6 @@
 spring:
+  session:
+    storage_type: redis # ?? ?????
   redis:
     host: localhost
     port: 7777
