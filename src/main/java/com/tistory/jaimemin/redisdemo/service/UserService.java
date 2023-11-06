@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.concurrent.TimeUnit;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -21,7 +23,6 @@ public class UserService {
 
     public UserProfile getUserProfile(String userId) throws InterruptedException {
         String userName = getUserName(userId);
-
         int userAge = externalApiService.getUserAge(userId);
 
         return new UserProfile(userName, userAge);
@@ -41,7 +42,7 @@ public class UserService {
 
         if (StringUtils.isEmpty(cachedName)) {
             userName = externalApiService.getUserName(userId);
-            ops.set(KEY + userId, userName);
+            ops.set(KEY + userId, userName, 5, TimeUnit.SECONDS);
         } else {
             userName = cachedName;
         }

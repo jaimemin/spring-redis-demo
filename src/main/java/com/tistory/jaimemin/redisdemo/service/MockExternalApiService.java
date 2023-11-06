@@ -1,6 +1,7 @@
 package com.tistory.jaimemin.redisdemo.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class MockExternalApiService {
 
     public String getUserName(String userId) throws InterruptedException {
-        // 외부 서비스나 DB 호출
+        // 외부 서비스나 DB 호
         Thread.sleep(500);
 
         log.info("Getting user name from other service..");
@@ -24,6 +25,7 @@ public class MockExternalApiService {
         return "";
     }
 
+    @Cacheable(cacheNames = "userAgeCache", key = "#userId") // Cache-Aside 패턴
     public int getUserAge(String userId) throws InterruptedException {
         // 외부 서비스나 DB 호출
         Thread.sleep(500);
