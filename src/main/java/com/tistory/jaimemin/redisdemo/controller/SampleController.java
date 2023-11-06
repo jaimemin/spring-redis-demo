@@ -1,4 +1,4 @@
-package com.tistory.jaimemin.redisdemo;
+package com.tistory.jaimemin.redisdemo.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;
