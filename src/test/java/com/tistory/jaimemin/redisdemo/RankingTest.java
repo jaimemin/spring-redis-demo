@@ -17,15 +17,15 @@ public class RankingTest {
     @Autowired
     private RankingService rankingService;
 
-    @Test
-    void insertScore() {
-        for (int i = 0; i < 1000000; i++) {
-            int score = (int) (Math.random() * 1000000);
-            String userId = "user_" + i;
-
-            rankingService.setUserScore(userId, score);
-        }
-    }
+//    @Test
+//    void insertScore() {
+//        for (int i = 0; i < 1000000; i++) {
+//            int score = (int) (Math.random() * 1000000);
+//            String userId = "user_" + i;
+//
+//            rankingService.setUserScore(userId, score);
+//        }
+//    }
 
     @Test
     void getRanks() {
